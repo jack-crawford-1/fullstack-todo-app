@@ -2,5 +2,56 @@
 
 html, 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'monospace'
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1 {
+  
+  font-size: 3.5rem;
+  color: #e45f5f;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+
+li {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #105bd8;
+  font-size: 1.4rem;
+  // text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    // 2px 2px 0 #000;
+  font-weight: bold;
+  text-decoration: none;
+  list-style: none;
+
+}
+
+button {
+  background: #105bd8;
+  border-radius: 20px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: monospace;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin: 10px;
+  width: 100px;
+}
+
+button:hover {
+  background: #3cb0fd;
+  text-decoration: none;
 }

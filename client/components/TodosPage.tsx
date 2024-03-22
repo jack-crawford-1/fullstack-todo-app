@@ -30,10 +30,10 @@ function TodosPage() {
       <ul>
         {data?.map((todo: Todo) => (
           <li key={todo.id}>
-            {todo.task}
             <button onClick={() => handleDelete(todo.id as number)}>
               Delete
             </button>
+            {todo.task}
           </li>
         ))}
       </ul>
