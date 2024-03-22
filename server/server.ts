@@ -1,13 +1,15 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import fruitRoutes from './routes/fruits.ts'
+import todoRoutes from './routes/todos.ts'
 
 const server = express()
 
 server.use(express.json())
 
-server.use('/api/v1/fruits', fruitRoutes)
+server.use('/api/v1', todoRoutes)
+// TODO 2 - add server routes above once they are created
+// Set up API endpoints (server.ts): With your data model ready, you can now expose it via API endpoints.
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
