@@ -8,7 +8,10 @@ router.get('/todos', async (req, res) => {
   try {
     const todos = await db.getAllTodos()
     res.json({
-      tasks: todos.map((todo) => todo.task),
+      tasks: todos.map((todo) => ({
+        id: todo.id,
+        task: todo.task,
+      })),
     })
   } catch (error) {
     console.log(error)
@@ -19,7 +22,7 @@ router.get('/todos', async (req, res) => {
 router.delete('/todos/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    await db.deleteTodo(id)
+    await db.deleteTodoById(id)
     res.json({ message: 'Todo deleted' })
   } catch (error) {
     console.log(error)

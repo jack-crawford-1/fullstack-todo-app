@@ -6,7 +6,7 @@ export async function getAllTodos(): Promise<Todo[]> {
   return db('todos').select()
 }
 
-export function deleteTodo(id: number) {
+export function deleteTodoById(id: number) {
   return db('todos').where('id', id).delete()
 }
 //  3

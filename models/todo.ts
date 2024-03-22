@@ -1,15 +1,6 @@
-export interface Fruit {
-  id: number
-  name: string
-}
-
-export interface FruitData {
-  name: string
-}
-
 export interface Todo {
   id: number
-  name: string
+  task: string
 }
 
 // TODO 1 define type of data in an interface
