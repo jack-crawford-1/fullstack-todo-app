@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Home() {
   return (
     <div className="home-container">
@@ -5,6 +7,11 @@ export default function Home() {
         <h1> Backend API with React</h1>
         <p>This is place to practice connecting to</p>
         <p>xpress server and Knex sqlite database</p>
+
+        <Link to="/todos" className="btn btn-primary">
+          {' '}
+          <button>Todo List </button>
+        </Link>
       </div>
     </div>
   )

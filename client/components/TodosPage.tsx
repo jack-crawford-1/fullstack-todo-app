@@ -1,15 +1,17 @@
-import { useTodos } from '../hooks/useTodos'
+import { useDeleteTodo, useTodos } from '../hooks/useTodos'
 import { deleteTodoFromDatabase } from '../apis/todos'
 import { Todo } from '../../models/todo'
 
-interface Props {
-  handleDelete: (id: number) => void
-}
+// interface Props {
+//   handleDelete: (id: number) => void
+// }
 
 function TodosPage() {
   const { data, isLoading, error } = useTodos()
-
+  // the hook _must_ be called in your component, but outside of your callback
+  const deleteTodo = useDeleteTodo()
   const handleDelete = async (id: number) => {
+    deleteTodo.mutate({ id })
     try {
       await deleteTodoFromDatabase(id)
 
