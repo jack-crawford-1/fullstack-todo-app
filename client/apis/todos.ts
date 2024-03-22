@@ -14,16 +14,18 @@ export async function getTodos() {
   }
 }
 
-export async function addTodoToDatabase(newTodo: string) {
-  const response = await fetch('/api/todos', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ task: newTodo }),
-  })
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
+export async function deleteTodoFromDatabase(
+  id: number,
+): Promise<ResponseType> {
+  try {
+    const response = await fetch(`/api/v1/todos/${id}`, {
+      method: 'DELETE',
+    })
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    return response.json()
+  } catch (error) {
+    throw new Error('Failed to delete todo: ' + error)
   }
-  return response.json()
 }

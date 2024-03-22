@@ -9,7 +9,7 @@ export interface FruitData {
 
 export interface Todo {
   id: number
-  task: string
+  name: string
 }
 
 // TODO 1 define type of data in an interface

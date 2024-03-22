@@ -16,6 +16,17 @@ router.get('/todos', async (req, res) => {
   }
 })
 
+router.delete('/todos/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    await db.deleteTodo(id)
+    res.json({ message: 'Todo deleted' })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 export default router
 
 // TODO 4

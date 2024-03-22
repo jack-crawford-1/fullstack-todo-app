@@ -33,19 +33,6 @@ export function useTodoMutation() {
   return mutation
 }
 
-export async function addTodoToDatabase(
-  newTodo: string,
-): Promise<ResponseType> {
-  const response = await fetch('/api/todos', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ task: newTodo }),
-  })
-  return response.json()
-}
-
 // Query functions go here e.g. useAddFruit
 /* function useAddFruit() {
   return useFruitsMutation(addFruit)
