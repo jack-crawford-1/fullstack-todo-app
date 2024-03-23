@@ -1,5 +1,5 @@
 import connection from './connection.ts'
-import { Todo } from '../../models/todo.ts'
+import { Todo } from '../../models/todoModel.ts'
 const db = connection
 
 export async function getAllTodos(): Promise<Todo[]> {
@@ -18,6 +18,7 @@ export function createTodo(todo: Todo) {
 export function addTodo(_task: unknown) {
   throw new Error('Function not implemented.')
 }
+
 //  3
 // server/db/todos.ts
 // is where the db function to get the shape of the data from the interface model and return something to the database.

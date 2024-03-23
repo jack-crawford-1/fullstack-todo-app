@@ -1,7 +1,7 @@
 //  5 call the data from the client side
 //Call the API from the client (client/api/fruits.ts): Use the client-side code to interact with the API set up.
 
-import { Todo } from '../../models/todo'
+import { Todo } from '../../models/todoModel'
 
 export async function getTodos() {
   try {
