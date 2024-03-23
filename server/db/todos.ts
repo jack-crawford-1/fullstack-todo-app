@@ -9,6 +9,15 @@ export async function getAllTodos(): Promise<Todo[]> {
 export function deleteTodoById(id: number) {
   return db('todos').where('id', id).delete()
 }
+
+export function createTodo(todo: Todo) {
+  return db('todos').insert({ task: todo.task }).returning('*')
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function addTodo(_task: unknown) {
+  throw new Error('Function not implemented.')
+}
 //  3
 // server/db/todos.ts
 // is where the db function to get the shape of the data from the interface model and return something to the database.

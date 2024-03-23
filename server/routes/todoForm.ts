@@ -10,7 +10,6 @@ router.post('/todoForm', async (req, res) => {
     if (!task) {
       return res.status(400).json({ message: 'Task is required' })
     }
-
     const newTodo = await db.addTodo(task)
     res.status(201).json(newTodo)
   } catch (error) {
