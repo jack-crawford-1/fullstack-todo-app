@@ -4,7 +4,7 @@ import {
   deleteTodoFromDatabase,
   getTodos,
 } from '../apis/todos.ts'
-import { Todo } from '../../models/todo.ts'
+import { Todo } from '../../models/todoModel.ts'
 
 export function useTodos() {
   const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })

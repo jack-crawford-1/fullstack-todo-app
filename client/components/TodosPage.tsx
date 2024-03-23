@@ -1,6 +1,6 @@
 import { useDeleteTodo, useTodos } from '../hooks/useTodos'
 import { deleteTodoFromDatabase } from '../apis/todos'
-import { Todo } from '../../models/todo'
+import { Todo } from '../../models/todoModel'
 import TodoForm from './TodoForm'
 import { Link } from 'react-router-dom'
 
