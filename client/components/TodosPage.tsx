@@ -1,6 +1,8 @@
 import { useDeleteTodo, useTodos } from '../hooks/useTodos'
 import { deleteTodoFromDatabase } from '../apis/todos'
 import { Todo } from '../../models/todo'
+import TodoForm from './TodoForm'
+import { Link } from 'react-router-dom'
 
 // interface Props {
 //   handleDelete: (id: number) => void
@@ -24,19 +26,23 @@ function TodosPage() {
   if (error) return <div>Error: {error.message}</div>
 
   return (
-    <div>
+    <div className="container">
       <h1>Todos</h1>
-
-      <ul>
+      <TodoForm />
+      <ul className="todo-list">
         {data?.map((todo: Todo) => (
           <li key={todo.id}>
+            {todo.task}
             <button onClick={() => handleDelete(todo.id as number)}>
               Delete
             </button>
-            {todo.task}
           </li>
         ))}
       </ul>
+      <Link to="/" className="btn btn-primary">
+        {' '}
+        <button>Home </button>
+      </Link>
     </div>
   )
 }

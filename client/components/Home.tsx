@@ -3,15 +3,26 @@ import { Link } from 'react-router-dom'
 export default function Home() {
   return (
     <div className="home-container">
-      <div className="home">
+      <div className="hero">
         <h1> Backend API with React</h1>
-        <p>This is place to practice connecting to</p>
-        <p>xpress server and Knex sqlite database</p>
+        <h2>Stack used</h2>
 
-        <Link to="/todos" className="btn btn-primary">
-          {' '}
-          <button>Todo List </button>
-        </Link>
+        <ul className="tech-stack">
+          <li>Express</li>
+          <li>React</li>
+          <li>Knex</li>
+          <li>SQLite</li>
+        </ul>
+        <div className="nav-buttons">
+          <Link to="/todos" className="nav-button">
+            {' '}
+            <button>Todo List </button>
+          </Link>
+          <Link to="/todoform" className="nav-button">
+            {' '}
+            <button>Todo Form </button>
+          </Link>
+        </div>
       </div>
     </div>
   )

@@ -30,9 +30,20 @@ router.delete('/todos/:id', async (req, res) => {
   }
 })
 
+router.post('/todos', async (req, res) => {
+  try {
+    const todo = req.body
+    const newTodo = await db.createTodo(todo)
+    res.json(newTodo[0])
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 export default router
 
-// TODO 4
+// 4
 // build out the route function that links in routes file
 //  file is located at routes/fruits.ts
 // it takes async function from db/fruits.ts

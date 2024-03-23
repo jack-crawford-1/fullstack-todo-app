@@ -1,20 +1,28 @@
-import React from 'react'
+import { useState } from 'react'
+import { useAddTodo, useTodos } from '../hooks/useTodos'
 
-interface Props {
-  handleOnSubmit: (value: string) => void
-}
+function TodoForm() {
+  const { isLoading, error } = useTodos()
+  const addTodo = useAddTodo()
+  const [inputValue, setinputValue] = useState('')
 
-const TodoForm: React.FC<Props> = ({ handleOnSubmit }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [inputValue, setinputValue] = React.useState('')
+  const handleSubmit = async (task: string) => {
+    addTodo.mutate({ task })
+    try {
+      console.log('Added todo:', task)
+    } catch (error) {
+      console.error('Failed to add todo:', error)
+    }
+  }
 
-  console.log('input value', inputValue)
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault()
-        handleOnSubmit(inputValue)
+        handleSubmit(inputValue)
         setinputValue('')
       }}
     >
