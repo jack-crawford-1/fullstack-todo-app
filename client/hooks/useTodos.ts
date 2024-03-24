@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   addTodoToDatabase,
   deleteTodoFromDatabase,
+  editTodoInDatabase,
   getTodos,
 } from '../apis/todos.ts'
 import { Todo } from '../../models/todoModel.ts'
@@ -13,6 +14,24 @@ export function useTodos() {
   }
 }
 
+//EDIT TODO
+
+export function useEditTodo() {
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ id, task }: { id: number; task: string }) => {
+      return await editTodoInDatabase(id, task)
+    },
+    onMutate: async (newTodo) => {
+      await client.cancelQueries({ queryKey: ['todos'] })
+      return newTodo
+    },
+    onSettled: () => {
+      client.invalidateQueries({ queryKey: ['todos'] })
+    },
+  })
+}
+// DELETE TODO
 export function useDeleteTodo() {
   const client = useQueryClient()
   return useMutation({
@@ -24,6 +43,8 @@ export function useDeleteTodo() {
     },
   })
 }
+
+// ADD TODO
 
 export function useAddTodo() {
   const client = useQueryClient()

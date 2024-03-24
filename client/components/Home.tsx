@@ -19,10 +19,6 @@ export default function Home() {
             {' '}
             <button>Todo List </button>
           </Link>
-          <Link to="/todoform" className="nav-button">
-            {' '}
-            <button>Todo Form </button>
-          </Link>
         </div>
         {/* <Login /> */}
       </div>

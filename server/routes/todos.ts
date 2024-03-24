@@ -19,6 +19,19 @@ router.get('/todos', async (req, res) => {
   }
 })
 
+router.patch('/todos/:id', async (req, res) => {
+  const { id } = req.params
+  const { task } = req.body
+
+  try {
+    const updatedTodo = await db.updateTodoById(Number(id), task)
+
+    res.json(updatedTodo)
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update todo' })
+  }
+})
+
 router.delete('/todos/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
@@ -34,6 +47,7 @@ router.post('/todos', async (req, res) => {
   try {
     const todo = req.body
     const newTodo = await db.createTodo(todo)
+    console.log(newTodo)
     res.json(newTodo[0])
   } catch (error) {
     console.log(error)
