@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <div className="hero">
-        <h1> Backend API with React</h1>
+        <h1> Fullstack Todo App</h1>
         <h2>Stack used</h2>
 
         <ul className="tech-stack">
