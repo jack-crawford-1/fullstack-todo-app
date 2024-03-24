@@ -20,13 +20,16 @@ function TodoForm() {
 
   return (
     <form
+      aria-label="todo-form"
       onSubmit={(e) => {
         e.preventDefault()
         handleSubmit(inputValue)
         setinputValue('')
       }}
     >
+      <label htmlFor="todo-input">New Task</label>
       <input
+        id="todo-input"
         type="text"
         className="todos"
         value={inputValue}

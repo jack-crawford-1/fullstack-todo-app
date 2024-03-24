@@ -75,14 +75,14 @@ h2 {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff; 
+  background-color: #004085; 
   color: #ffffff;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 500;
   border: none;
   border-radius: 5px; 
-  box-shadow: 0 4px 8px #007bff4d; 
+  box-shadow: 0 4px 8px #0040854d; 
   cursor: pointer;
   transition: all 0.3s ease; 
   outline: none; 
@@ -92,7 +92,7 @@ button {
 }
 
 button:hover, button:focus {
-  background-color: #0056b3; 
+  background-color: #2e73bd; 
   box-shadow: 0 6px 12px #007bff80; 
 }
 
@@ -175,7 +175,7 @@ button:disabled {
 }
 
 .tech-stack li {
-  background: #4D9FEC;
+  background: #0057a9;
   color: #ffffff;
   display: inline-block;
   padding: 10px 20px;
@@ -194,12 +194,11 @@ button:disabled {
 .nav-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .nav-button {
-  padding: 10px 20px;
-  margin: 0 10px;
+  
   background-color: #007bff;
   color: #ffffff;
   border: none;
