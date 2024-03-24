@@ -47,6 +47,7 @@ router.post('/todos', async (req, res) => {
   try {
     const todo = req.body
     const newTodo = await db.createTodo(todo)
+    console.log(newTodo)
     res.json(newTodo[0])
   } catch (error) {
     console.log(error)
