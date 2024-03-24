@@ -3,6 +3,7 @@
 
 import { Todo } from '../../models/todoModel'
 
+// GET TODOS
 export async function getTodos() {
   try {
     const response = await fetch('/api/v1/todos')
@@ -16,6 +17,27 @@ export async function getTodos() {
   }
 }
 
+// EDIT TODO
+export async function editTodoInDatabase(id: number, task: string) {
+  try {
+    const response = await fetch(`/api/v1/todos/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ task }),
+    })
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    console.log('response', response)
+    return response.json()
+  } catch (error) {
+    throw new Error('Failed to edit todo: ' + error)
+  }
+}
+
+// DELETE TODO
 export async function deleteTodoFromDatabase(
   id: number,
 ): Promise<ResponseType> {
@@ -32,6 +54,7 @@ export async function deleteTodoFromDatabase(
   }
 }
 
+// ADD TODO
 export async function addTodoToDatabase(todo: Todo): Promise<Todo> {
   try {
     const response = await fetch('/api/v1/todos', {
