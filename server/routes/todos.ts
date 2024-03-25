@@ -21,6 +21,19 @@ router.get('/todos', async (req, res) => {
 
 router.patch('/todos/:id', async (req, res) => {
   const { id } = req.params
+  try {
+    const completedTodo = await db.completeTodoById(
+      Number(id),
+      req.body.completed,
+    )
+    res.json(completedTodo)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Failed to complete todo', error: error })
+  }
+})
+router.patch('/todos/:id', async (req, res) => {
+  const { id } = req.params
   const { task } = req.body
 
   try {

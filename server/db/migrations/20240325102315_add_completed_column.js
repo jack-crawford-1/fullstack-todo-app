@@ -3,17 +3,16 @@
  * @returns { Promise<void> }
  */
 export async function up(knex) {
-  return knex.schema.createTable('todos', function (table) {
-    table.increments('id')
-    table.string('task')
-    table.boolean('complete').defaultTo(false)
+  return knex.schema.table('todos', function (table) {
+    table.boolean('completed').defaultTo(false)
   })
 }
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 export async function down(knex) {
-  return knex.schema.dropTable('todos')
+  return knex.schema.table('todos', function (table) {
+    table.dropColumn('completed')
+  })
 }

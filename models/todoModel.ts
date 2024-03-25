@@ -1,6 +1,7 @@
 export interface Todo {
   id: number
   task: string
+  complete: boolean
 }
 
 // TODO 1 define type of data in an interface

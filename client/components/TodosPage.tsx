@@ -1,5 +1,9 @@
 import { useDeleteTodo, useEditTodo, useTodos } from '../hooks/useTodos'
-import { deleteTodoFromDatabase, editTodoInDatabase } from '../apis/todos'
+import {
+  completeTodoInDatabase,
+  deleteTodoFromDatabase,
+  editTodoInDatabase,
+} from '../apis/todos'
 import { Todo } from '../../models/todoModel'
 import TodoForm from './TodoForm'
 import { Link } from 'react-router-dom'
@@ -21,6 +25,17 @@ function TodosPage() {
       setEditTask('')
     } catch (error) {
       console.error('Failed to edit todo:', error)
+    }
+  }
+
+  //  MARK TODO COMPLETE
+  const handleComplete = async (id: number, complete: boolean) => {
+    try {
+      await completeTodoInDatabase(id, complete)
+      editTodo.mutate(data)
+      console.log('Completed todo:', id)
+    } catch (error) {
+      console.error('Failed to complete todo:', error)
     }
   }
 
@@ -57,6 +72,9 @@ function TodosPage() {
 
             <div className="buttons-container">
               <button onClick={() => handleDelete(todo.id)}>Delete</button>
+              <button onClick={() => handleComplete(todo.id)}>
+                Mark complete
+              </button>
               {editTodoId === todo.id ? (
                 <button onClick={() => handleEdit(todo.id)}>Save</button>
               ) : (

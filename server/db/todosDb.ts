@@ -10,6 +10,17 @@ export function deleteTodoById(id: number) {
   return db('todos').where('id', id).delete()
 }
 
+export function completeTodoById(id: number, completed: boolean) {
+  return db('todos')
+    .where('id', id)
+    .update({ completed })
+    .then((rows) => {
+      if (rows === 0) {
+        throw new Error('Todo not found')
+      }
+      return db('todos').where('id', id).first()
+    })
+}
 export function updateTodoById(id: number, newTask: string) {
   return db('todos').where('id', id).update({ task: newTask })
 }

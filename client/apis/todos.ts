@@ -30,10 +30,31 @@ export async function editTodoInDatabase(id: number, task: string) {
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
-    console.log('response', response)
     return response.json()
   } catch (error) {
     throw new Error('Failed to edit todo: ' + error)
+  }
+}
+
+// COMPLETE TODO
+export async function completeTodoInDatabase(
+  id: number,
+  completed: boolean,
+): Promise<Todo> {
+  try {
+    const response = await fetch(`/api/v1/todos/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ completed }),
+    })
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    return response.json()
+  } catch (error) {
+    throw new Error('Failed to complete todo: ' + error)
   }
 }
 
