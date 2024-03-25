@@ -1,5 +1,5 @@
 import { IfAuthenticated, IfNotAuthenticated } from './Auth.tsx'
-import { NavGroup, NavButton } from '../components/styling.tsx'
+import { NavGroup, NavButton } from '../components/Styling.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function Nav() {
