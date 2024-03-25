@@ -53,6 +53,10 @@ function TodosPage() {
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
 
+  interface Props {
+    handleComplete: (id: number) => void
+  }
+
   return (
     <div className="container">
       <h1>Todos</h1>
@@ -72,8 +76,8 @@ function TodosPage() {
 
             <div className="buttons-container">
               <button onClick={() => handleDelete(todo.id)}>Delete</button>
-              <button onClick={() => handleComplete(todo.id)}>
-                Mark complete
+              <button onClick={() => handleComplete(todo.id, todo.complete)}>
+                {todo.complete ? 'Incompleted' : 'Completed'}
               </button>
               {editTodoId === todo.id ? (
                 <button onClick={() => handleEdit(todo.id)}>Save</button>
