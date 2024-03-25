@@ -37,6 +37,9 @@ function TodosPage() {
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
+  const toggleCompleted = () => {
+    console.log('completed')
+  }
 
   return (
     <div className="container">
@@ -56,6 +59,7 @@ function TodosPage() {
             )}
 
             <div className="buttons-container">
+              <button onClick={toggleCompleted}>completed</button>
               <button onClick={() => handleDelete(todo.id)}>Delete</button>
               {editTodoId === todo.id ? (
                 <button onClick={() => handleEdit(todo.id)}>Save</button>

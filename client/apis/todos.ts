@@ -20,7 +20,7 @@ export async function getTodos() {
 // EDIT TODO
 export async function editTodoInDatabase(id: number, task: string) {
   try {
-    const response = await fetch(`/api/v1/todos/${id}`, {
+    const response = await fetch(`/api/v1/todos${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
