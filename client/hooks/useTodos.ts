@@ -14,8 +14,6 @@ export function useTodos() {
   }
 }
 
-//EDIT TODO
-
 export function useEditTodo() {
   const client = useQueryClient()
   return useMutation({
@@ -31,7 +29,7 @@ export function useEditTodo() {
     },
   })
 }
-// DELETE TODO
+
 export function useDeleteTodo() {
   const client = useQueryClient()
   return useMutation({
@@ -43,8 +41,6 @@ export function useDeleteTodo() {
     },
   })
 }
-
-// ADD TODO
 
 export function useAddTodo() {
   const client = useQueryClient()
@@ -61,8 +57,3 @@ export function useAddTodo() {
     },
   })
 }
-
-// Query functions go here e.g. useAddFruit
-/* function useAddFruit() {
-  return useFruitsMutation(addFruit)
-} */

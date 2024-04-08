@@ -56,11 +56,3 @@ router.post('/todos', async (req, res) => {
 })
 
 export default router
-
-// 4
-// build out the route function that links in routes file
-//  file is located at routes/fruits.ts
-// it takes async function from db/fruits.ts
-// and then returns (res) the data which is stored as a promise
-
-// Implement the API route (server/routes/fruits.ts): Create the routes that will use your database access functions to respond to API requests.

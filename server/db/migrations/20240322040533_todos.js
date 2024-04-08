@@ -6,6 +6,7 @@ export async function up(knex) {
   return knex.schema.createTable('todos', function (table) {
     table.increments('id')
     table.string('task')
+    table.boolean('isCompleted')
   })
 }
 

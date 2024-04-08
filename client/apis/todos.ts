@@ -1,9 +1,5 @@
-//  5 call the data from the client side
-//Call the API from the client (client/api/fruits.ts): Use the client-side code to interact with the API set up.
-
 import { Todo } from '../../models/todoModel'
 
-// GET TODOS
 export async function getTodos() {
   try {
     const response = await fetch('/api/v1/todos')
@@ -17,7 +13,6 @@ export async function getTodos() {
   }
 }
 
-// EDIT TODO
 export async function editTodoInDatabase(id: number, task: string) {
   try {
     const response = await fetch(`/api/v1/todos/${id}`, {
@@ -37,7 +32,6 @@ export async function editTodoInDatabase(id: number, task: string) {
   }
 }
 
-// DELETE TODO
 export async function deleteTodoFromDatabase(
   id: number,
 ): Promise<ResponseType> {
@@ -54,7 +48,6 @@ export async function deleteTodoFromDatabase(
   }
 }
 
-// ADD TODO
 export async function addTodoToDatabase(todo: Todo): Promise<Todo> {
   try {
     const response = await fetch('/api/v1/todos', {

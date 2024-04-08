@@ -9,9 +9,6 @@ server.use(express.json())
 
 server.use('/api/v1', todoRoutes)
 
-//  2 - add server routes above once they are created
-// Set up API endpoints (server.ts): With your data model ready, you can now expose it via API endpoints.
-
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
   server.use('/assets', express.static(Path.resolve('./dist/assets')))

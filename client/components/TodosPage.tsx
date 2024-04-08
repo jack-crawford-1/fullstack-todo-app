@@ -12,7 +12,6 @@ function TodosPage() {
   const deleteTodo = useDeleteTodo()
   const editTodo = useEditTodo()
 
-  // EDIT TODO
   const handleEdit = async (id: number) => {
     try {
       await editTodoInDatabase(id, editTask)
@@ -24,7 +23,6 @@ function TodosPage() {
     }
   }
 
-  // DELETE TODO
   const handleDelete = async (id: number) => {
     try {
       await deleteTodoFromDatabase(id)
