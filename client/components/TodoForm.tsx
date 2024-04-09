@@ -1,15 +1,25 @@
 import { useState } from 'react'
 import { useAddTodo, useTodos } from '../hooks/useTodos'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function TodoForm() {
   const { isLoading, error } = useTodos()
+  const { getAccessTokenSilently } = useAuth0()
   const addTodo = useAddTodo()
   const [inputValue, setinputValue] = useState('')
 
   const handleSubmit = async (task: string) => {
-    addTodo.mutate({ task })
     try {
-      console.log('Added todo:', task)
+      const token = await getAccessTokenSilently()
+      await addTodo.mutateAsync(
+        { task },
+        {
+          onSuccess: () => {
+            console.log('Added todo:', task)
+          },
+        },
+        token,
+      )
     } catch (error) {
       console.error('Failed to add todo:', error)
     }

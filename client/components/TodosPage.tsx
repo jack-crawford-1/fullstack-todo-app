@@ -41,7 +41,7 @@ function TodosPage() {
       <h1>Todos</h1>
       <TodoForm />
       <ul className="todo-list">
-        {data?.map((todo: Todo) => (
+        {data?.tasks.map((todo: Todo) => (
           <li key={todo.id} className="todo-item">
             {editTodoId === todo.id ? (
               <input

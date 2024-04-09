@@ -1,15 +1,16 @@
 import { Todo } from '../../models/todoModel'
 
+const rootUrl = '/api/v1'
+
 export async function getTodos() {
   try {
-    const response = await fetch('/api/v1/todos')
+    const response = await fetch(`${rootUrl}/todos`)
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
-    const result = await response.json()
-    return result.tasks
+    return response.json()
   } catch (error) {
-    throw new Error('Failed to fetch todos: ' + error)
+    throw new Error('Failed to get todos: ' + error.message)
   }
 }
 
@@ -48,17 +49,21 @@ export async function deleteTodoFromDatabase(
   }
 }
 
-export async function addTodoToDatabase(todo: Todo): Promise<Todo> {
+export async function addTodoToDatabase(
+  todo: Todo,
+  token: string,
+): Promise<Todo> {
   try {
     const response = await fetch('/api/v1/todos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(todo),
+      body: JSON.stringify({ todo }),
     })
     if (!response.ok) {
-      throw new Error('Network response was not ok')
+      throw new Error(`Network response was not ok: ${error.message}`)
     }
     return response.json()
   } catch (error) {

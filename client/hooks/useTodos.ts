@@ -6,6 +6,7 @@ import {
   getTodos,
 } from '../apis/todos.ts'
 import { Todo } from '../../models/todoModel.ts'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export function useTodos() {
   const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
@@ -44,13 +45,17 @@ export function useDeleteTodo() {
 
 export function useAddTodo() {
   const client = useQueryClient()
+  const { getAccessTokenSilently } = useAuth0()
+
   return useMutation({
     mutationFn: async (params: { task: string }) => {
+      const token = await getAccessTokenSilently()
       const todoToAdd: Todo = {
-        task: params.task,
         id: 0,
+        task: params.task,
+        isCompleted: false,
       }
-      await addTodoToDatabase(todoToAdd)
+      await addTodoToDatabase(todoToAdd, token)
     },
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['todos'] })
