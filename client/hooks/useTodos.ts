@@ -9,10 +9,31 @@ import { Todo } from '../../models/todoModel.ts'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export function useTodos() {
-  const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
-  return {
-    ...query,
+  const { getAccessTokenSilently } = useAuth0()
+
+  const fetchTodos = async ({ queryKey }) => {
+    const rootUrl = '/api/v1'
+    const token = await getAccessTokenSilently()
+    const response = await fetch(`${rootUrl}/${queryKey[0]}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const errorResult = await response.json()
+      throw new Error(errorResult.message || 'Network response was not ok')
+    }
+
+    return response.json()
   }
+
+  const query = useQuery({
+    queryKey: ['todos'],
+    queryFn: fetchTodos,
+  })
+
+  return query
 }
 
 export function useEditTodo() {

@@ -2,8 +2,8 @@ import connection from './connection.ts'
 import { Todo } from '../../models/todoModel.ts'
 const db = connection
 
-export async function getAllTodos(): Promise<Todo[]> {
-  return db('todos').select()
+export async function getAllTodos(userId: string): Promise<Todo[]> {
+  return db('todos').where('user_id', userId).select()
 }
 
 export function deleteTodoById(id: number) {
@@ -14,6 +14,6 @@ export function updateTodoById(id: number, newTask: string) {
   return db('todos').where('id', id).update({ task: newTask })
 }
 
-export function createTodo(todo: Todo, userId: string) {
-  return db('todos').insert({ task: todo.task }).returning('*')
+export function createTodo(todo) {
+  return db('todos').insert(todo).returning('*')
 }

@@ -3,16 +3,17 @@
  * @returns { Promise<void> }
  */
 export async function seed(knex) {
+  const userId = 'google-oauth2|108623394460481699824'
   await knex('todos').del()
   await knex('todos').insert([
-    { id: 1, task: 'Buy Milk', isCompleted: false },
-    { id: 2, task: 'Get a haircut', isCompleted: false },
-    { id: 3, task: 'Fix car', isCompleted: false },
-    { id: 4, task: 'Buy Tshirt', isCompleted: false },
-    { id: 5, task: 'Get flowers', isCompleted: false },
-    { id: 6, task: 'Fix dryer', isCompleted: false },
-    { id: 7, task: 'Buy bread', isCompleted: false },
-    { id: 8, task: 'Pickup drycleaning', isCompleted: false },
-    { id: 9, task: 'Walk the dog', isCompleted: false },
+    { id: 1, task: 'Buy Milk', isCompleted: false, user_id: userId },
+    { id: 2, task: 'Get a haircut', isCompleted: false, user_id: userId },
+    { id: 3, task: 'Fix car', isCompleted: false, user_id: userId },
+    { id: 4, task: 'Buy Tshirt', isCompleted: false, user_id: userId },
+    { id: 5, task: 'Get flowers', isCompleted: false, user_id: userId },
+    { id: 6, task: 'Fix dryer', isCompleted: false, user_id: userId },
+    { id: 7, task: 'Buy bread', isCompleted: false, user_id: userId },
+    { id: 8, task: 'Pickup drycleaning', isCompleted: false, user_id: userId },
+    { id: 9, task: 'Walk the dog', isCompleted: false, user_id: userId },
   ])
 }
