@@ -14,6 +14,6 @@ export function updateTodoById(id: number, newTask: string) {
   return db('todos').where('id', id).update({ task: newTask })
 }
 
-export function createTodo(todo: Todo) {
+export function createTodo(todo: Todo, userId: string) {
   return db('todos').insert({ task: todo.task }).returning('*')
 }

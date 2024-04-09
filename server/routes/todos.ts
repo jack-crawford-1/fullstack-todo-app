@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import * as db from '../db/todosDb.ts'
+import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = Router()
 
@@ -16,6 +17,29 @@ router.get('/todos', async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'something went wrong' })
+  }
+})
+
+router.post('/todos', checkJwt, async (req: JwtRequest, res) => {
+  const { todo } = req.body
+  const auth0Id = req.auth?.sub
+  if (!todo) {
+    console.error('No todos found in request')
+    return res.status(400).json({ message: 'No todos found in request' })
+  }
+
+  if (!auth0Id) {
+    console.error('No auth0Id found in request')
+    return res.status(401).json({ message: 'Unauthorized' })
+  }
+
+  try {
+    const newTodo = await db.createTodo(todo, auth0Id)
+
+    res.json(newTodo[0])
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
   }
 })
 
@@ -37,18 +61,6 @@ router.delete('/todos/:id', async (req, res) => {
     const id = Number(req.params.id)
     await db.deleteTodoById(id)
     res.json({ message: 'Todo deleted' })
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: 'Something went wrong' })
-  }
-})
-
-router.post('/todos', async (req, res) => {
-  try {
-    const todo = req.body
-    const newTodo = await db.createTodo(todo)
-    console.log(newTodo)
-    res.json(newTodo[0])
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
