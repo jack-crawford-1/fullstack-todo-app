@@ -17,3 +17,10 @@ export function updateTodoById(id: number, newTask: string) {
 export function createTodo(todo) {
   return db('todos').insert(todo).returning('*')
 }
+
+export async function updateCompletedById(updatedTask: Todo) {
+  const todo = await db('todos').where('todos.id', updatedTask.id).update({
+    complete: updatedTask.isCompleted,
+  })
+  return todo
+}

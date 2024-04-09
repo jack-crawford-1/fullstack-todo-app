@@ -1,4 +1,5 @@
 import { Todo } from '../../models/todoModel'
+import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
@@ -28,6 +29,15 @@ export async function editTodoInDatabase(id: number, task: string) {
     }
     console.log('response', response)
     return response.json()
+  } catch (error) {
+    throw new Error('Failed to edit todo: ' + error)
+  }
+}
+
+export const toggleComplete = async (data: Todo) => {
+  const url = '/api/v1'
+  try {
+    await request.patch(`${url}/${data.id}`).send(data)
   } catch (error) {
     throw new Error('Failed to edit todo: ' + error)
   }

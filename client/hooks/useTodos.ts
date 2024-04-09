@@ -11,7 +11,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 export function useTodos() {
   const { getAccessTokenSilently } = useAuth0()
 
-  const fetchTodos = async ({ queryKey }) => {
+  const fetchTodos = async ({ queryKey }: { queryKey: string[] }) => {
     const rootUrl = '/api/v1'
     const token = await getAccessTokenSilently()
     const response = await fetch(`${rootUrl}/${queryKey[0]}`, {

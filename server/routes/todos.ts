@@ -55,6 +55,18 @@ router.patch('/todos/:id', async (req, res) => {
   }
 })
 
+router.patch('/todos/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  const { task, isCompleted } = req.body
+  try {
+    await db.updateCompletedById({ id, task, isCompleted })
+    res.sendStatus(200)
+  } catch (err) {
+    console.error(`Error updating isCompleted: ${err}`)
+    res.sendStatus(500)
+  }
+})
+
 router.delete('/todos/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
