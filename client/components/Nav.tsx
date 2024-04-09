@@ -15,19 +15,28 @@ function Nav() {
 
   return (
     <>
-      <NavGroup>
-        <IfAuthenticated>
-          <NavButton className="sign-button signOut" onClick={handleSignOut}>
-            Sign out
-          </NavButton>
-          {user && <p>Signed in as: {user?.given_name}</p>}
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <NavButton className="sign-button signIn" onClick={handleSignIn}>
-            Sign in
-          </NavButton>
-        </IfNotAuthenticated>
-      </NavGroup>
+      <div className="sign-in-container">
+        <NavGroup>
+          <IfNotAuthenticated>
+            <NavButton className="sign-button signIn" onClick={handleSignIn}>
+              Sign in
+            </NavButton>
+          </IfNotAuthenticated>
+          <IfAuthenticated>
+            <div className="user-info">
+              {user && (
+                <>
+                  <img className="user-image" src={user?.picture} alt="User" />
+                  <p>Signed in as: {user?.given_name}</p>
+                </>
+              )}
+            </div>
+            <NavButton className="sign-button signOut" onClick={handleSignOut}>
+              Sign out
+            </NavButton>
+          </IfAuthenticated>
+        </NavGroup>
+      </div>
     </>
   )
 }
