@@ -5,9 +5,13 @@ import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = Router()
 
-router.get('/todos', async (req, res) => {
+router.get('/todos', checkJwt, async (req: JwtRequest, res) => {
   try {
-    const todos = await db.getAllTodos()
+    const userId = req.auth?.sub
+    if (!userId) {
+      return res.status(401).json({ message: 'User ID not found' })
+    }
+    const todos = await db.getAllTodos(userId)
     res.json({
       tasks: todos.map((todo) => ({
         id: todo.id,
@@ -21,24 +25,19 @@ router.get('/todos', async (req, res) => {
 })
 
 router.post('/todos', checkJwt, async (req: JwtRequest, res) => {
-  const { todo } = req.body
+  const { task, isCompleted } = req.body
   const auth0Id = req.auth?.sub
-  if (!todo) {
-    console.error('No todos found in request')
-    return res.status(400).json({ message: 'No todos found in request' })
-  }
-
-  if (!auth0Id) {
-    console.error('No auth0Id found in request')
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
 
   try {
-    const newTodo = await db.createTodo(todo, auth0Id)
+    const newTodo = await db.createTodo({
+      task,
+      isCompleted,
+      user_id: auth0Id,
+    })
 
-    res.json(newTodo[0])
+    res.status(201).json(newTodo)
   } catch (error) {
-    console.log(error)
+    console.error('Failed to add todo:', error)
     res.status(500).json({ message: 'Something went wrong' })
   }
 })

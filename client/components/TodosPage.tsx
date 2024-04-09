@@ -36,6 +36,10 @@ function TodosPage() {
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
 
+  if (data?.length === 0) {
+    return <div>You have no todos.</div>
+  }
+
   return (
     <div className="container">
       <h1>Todos</h1>

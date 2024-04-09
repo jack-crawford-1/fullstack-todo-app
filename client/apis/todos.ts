@@ -60,7 +60,7 @@ export async function addTodoToDatabase(
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ todo }),
+      body: JSON.stringify(todo),
     })
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${error.message}`)
