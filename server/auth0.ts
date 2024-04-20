@@ -7,7 +7,7 @@ import jwks from 'jwks-rsa'
 // const domain = 'https://tohora-24-jack.au.auth0.com'
 
 const domain = 'https://todo-fullstack.au.auth0.com'
-const audience = 'https://todo/api'
+const audience = 'https://todo-fullstack.pushed.nz/'
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({
