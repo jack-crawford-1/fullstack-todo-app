@@ -11,11 +11,11 @@ const queryClient = new QueryClient()
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
     <Auth0Provider
-      domain="tohora-24-jack.au.auth0.com"
-      clientId="8bvXFO9nNuXezZ6qmGa2gZQaR1GLMehh"
+      domain="todo-fullstack.au.auth0.com"
+      clientId="wdn3JkF21kjba1Jsowysc0slK7g7D1D6"
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: 'https://todos/api',
+        audience: 'https://todo-fullstack.pushed.nz/',
       }}
     >
       <QueryClientProvider client={queryClient}>
