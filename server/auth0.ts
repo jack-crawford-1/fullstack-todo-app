@@ -5,7 +5,7 @@ import { JwtPayload } from 'jsonwebtoken'
 import jwks from 'jwks-rsa'
 
 const domain = 'todo-fullstack.au.auth0.com'
-const audience = 'https://todo/api'
+const audience = 'https://todo-fullstack.pushed.nz/'
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({
