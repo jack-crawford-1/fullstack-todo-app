@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 export async function seed(knex) {
-  const userId = 'google-oauth2|108623394460481699824'
+  const userId = 'google-oauth2|117792864117201835995'
   await knex('todos').del()
   await knex('todos').insert([
     { id: 1, task: 'Buy Milk', isCompleted: false, user_id: userId },

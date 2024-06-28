@@ -37,7 +37,6 @@ function TodoForm() {
         setinputValue('')
       }}
     >
-      <label htmlFor="todo-input">New Task</label>
       <input
         id="todo-input"
         type="text"
